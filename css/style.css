@@ -2,7 +2,8 @@
    STYLES FÖR: css-grid-flexbox-examples
    Fil: styles.css
    ============================== */
-:root{
+
+:root {
   --bg: #f7f9fc;
   --card: #ffffff;
   --muted: #6b7280;
@@ -12,23 +13,40 @@
   --pad: 18px;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-html,body{height:100%;}
-body{
-  margin:0;
-  background:var(--bg);
-  color:#0f172a;
-  line-height:1.4;
-  display:flex;
-  justify-content:center;
-  padding:36px 16px;
+
+html,
+body {
+  height: 100%;
 }
-.wrap{
-  width:100%;
-  max-width:var(--max-width);
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a;
+  line-height: 1.4;
+  display: flex; /* flex | block | grid | inline-flex | inline-block | none */
+  justify-content: center; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+  padding: 36px 16px;
 }
-header{margin-bottom:18px;}
-h1{font-size:22px;margin:0 0 6px}
-p.lead{margin:0;color:var(--muted)}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+header {
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+p.lead {
+  margin: 0;
+  color: var(--muted);
+}
 
 .item,
 .box,
@@ -40,128 +58,241 @@ p.lead{margin:0;color:var(--muted)}
 .wrap-demo .card,
 .order-demo .box,
 .placement-demo .frame,
-.header, .sidebar, .main, .aside, .footer{
-    border: 1px solid #000000;
+.header,
+.sidebar,
+.main,
+.aside,
+.footer {
+  border: 1px solid #000000;
 }
 
-/* Small card container used for each example */
-.card{
-  background:var(--card);
-  border-radius:12px;
-  box-shadow:0 1px 0 rgba(10,10,10,0.04);
-  padding:var(--pad);
-  margin:14px 0;
+/* Small card container */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(10, 10, 10, 0.04);
+  padding: var(--pad);
+  margin: 14px 0;
 }
 
-.note{color:var(--muted);font-size:14px;margin:8px 0 12px}
-
-/* Utility: grid of examples in page */
-.examples-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:16px;
-  align-items:start;
+.note {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 8px 0 12px;
 }
 
-/* ======================================================================
-   SECTION: CSS GRID — flera pedagogiska exempel
-   ====================================================================== */
-/* 1) Enkel grid (rader/kolumner) */
-.grid-demo{background:linear-gradient(180deg,#fff,#fbfeff);padding:12px;border-radius:8px}
-.grid-demo .container{
-  display:grid; /* Slår på grid */
-  grid-template-columns: repeat(3, 1fr); /* 3 lika breda kolumner */
-  gap: var(--gap); /* rad- och kolumn-gap */
-  margin-top:10px;
-}
-.grid-demo .item{
-  background:#eef6f5;
-  padding:12px;border-radius:8px;text-align:center;font-weight:600
+.examples-grid {
+  display: grid; /* grid | inline-grid | flex | block | none */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* auto-fit | auto-fill */
+  gap: 16px;
+  align-items: start; /* start | end | center | stretch | baseline */
 }
 
-/* 2) Named grid-areas — bra för layout där du vill placera sektioner semantiskt */
-.grid-areas-demo .layout{
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr; /* vänster, center, höger */
-  grid-template-rows: auto 1fr auto; /* header, content, footer */
+/* ==========================================================
+   CSS GRID
+   ========================================================== */
+
+/* 1) Enkel grid */
+.grid-demo {
+  background: linear-gradient(180deg, #fff, #fbfeff);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.grid-demo .container {
+  display: grid; /* grid | inline-grid | flex | block | none */
+  grid-template-columns: repeat(3, 1fr); /* repeat(n, size) | auto-fit | auto-fill */
+  gap: var(--gap);
+  margin-top: 10px;
+}
+
+.grid-demo .item {
+  background: #eef6f5;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* 2) Grid areas */
+.grid-areas-demo .layout {
+  display: grid; /* grid | inline-grid | flex | block | none */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header header"
     "sidebar main aside"
     "footer footer footer";
-  gap:12px;
-  margin-top:10px;
-}
-.grid-areas-demo .header{grid-area:header;background:#fffbe6;padding:12px;border-radius:6px}
-.grid-areas-demo .sidebar{grid-area:sidebar;background:#eef2ff;padding:12px;border-radius:6px}
-.grid-areas-demo .main{grid-area:main;background:#fef2f2;padding:12px;border-radius:6px}
-.grid-areas-demo .aside{grid-area:aside;background:#e7f9ff;padding:12px;border-radius:6px}
-.grid-areas-demo .footer{grid-area:footer;background:#f3f4f6;padding:12px;border-radius:6px}
-
-/* 3) Auto-fill / Auto-fit — responsiv grid för kort/kort-listor */
-.auto-grid-demo .cards{
-  display:grid;
-  /* auto-fit försöker fylla raden med så många 200px-springs som får plats
-     minmax(180px, 1fr) betyder: varje kolumn är minst 180px, max tar resterande utrymme */
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap:12px;
-  margin-top:10px;
-}
-.auto-grid-demo .card-item{padding:12px;border-radius:8px;background:#fff;text-align:left}
-
-/* 4) Grid alignment och placering av enskilda element */
-.placement-demo .frame{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows:80px;
-  gap:8px;
-  margin-top:10px;
-  background:#ffffff;
-  padding:12px;border-radius:8px
-}
-.placement-demo .box{background:#eef2ff;border-radius:6px;display:flex;align-items:center;justify-content:center}
-/* placera ett element över flera kolumner/ rader */
-.placement-demo .box.big{grid-column:2 / span 2; grid-row:1 / span 2; background:#dbeafe}
-
-
-/* ======================================================================
-   SECTION: FLEXBOX — flera pedagogiska exempel
-   ====================================================================== */
-/* 1) Enkel horisontell layout (t.ex. navbar) */
-.flex-demo .navbar{
-  display:flex; /* slår på flex */
-  gap:8px;
-  align-items:center; /* vertikal inriktning */
-  padding:8px; background:#0f172a;color:#fff;border-radius:8px
-}
-.flex-demo .navbar .brand{font-weight:700;margin-right:auto}
-.flex-demo .navbar .links{display:flex;gap:8px}
-
-/* 2) Centrerings-tricket: flexbox för perfekt centering */
-.center-demo .center-frame{display:flex;align-items:center;justify-content:center;height:160px;background:#fff;border-radius:8px;margin-top:10px}
-
-/* 3) Flex wrap + grow — responsiva kort i rad
-   flex-wrap låter innehåll brytas till nästa rad; flex: 1 1 220px betyder grow, shrink, basis */
-.wrap-demo .row{
-  display:flex;flex-wrap:wrap;gap:12px;margin-top:10px
-}
-.wrap-demo .card{
-  flex:1 1 220px; /* växer för att fylla utrymme, krymper, utgångsbredd 220px */
-  min-width:170px;
-  background:#fff;padding:12px;border-radius:8px
+  gap: 12px;
+  margin-top: 10px;
 }
 
-/* 4) Ordering & alignment (ändra ordning utan att ändra HTML) */
-.order-demo .row{display:flex;gap:8px;margin-top:10px}
-.order-demo .box{padding:10px;border-radius:6px;background:#eefcf6}
-.order-demo .box.first{order:3}
-.order-demo .box.second{order:1}
-.order-demo .box.third{order:2}
+.grid-areas-demo .header {
+  grid-area: header;
+  background: #fffbe6;
+  padding: 12px;
+  border-radius: 6px;
+}
 
-/* Små stilar för elementtext */
-.example-title{font-weight:700;margin:0 0 6px}
-.example-sub{color:var(--muted);font-size:13px;margin:0}
+.grid-areas-demo .sidebar {
+  grid-area: sidebar;
+  background: #eef2ff;
+  padding: 12px;
+  border-radius: 6px;
+}
 
-/* Wrappers för demo-sektionerna — hjälper dem hålla sig inom kortets yta */
+.grid-areas-demo .main {
+  grid-area: main;
+  background: #fef2f2;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.grid-areas-demo .aside {
+  grid-area: aside;
+  background: #e7f9ff;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.grid-areas-demo .footer {
+  grid-area: footer;
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* 3) Auto-fit / auto-fill */
+.auto-grid-demo .cards {
+  display: grid; /* grid | inline-grid | flex | block | none */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* auto-fit | auto-fill */
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.auto-grid-demo .card-item {
+  padding: 12px;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+}
+
+/* 4) Placement */
+.placement-demo .frame {
+  display: grid; /* grid | inline-grid | flex | block | none */
+  grid-template-columns: repeat(4, 1fr); /* repeat(n, size) | auto-fit | auto-fill */
+  grid-auto-rows: 80px;
+  gap: 8px;
+  margin-top: 10px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.placement-demo .box {
+  background: #eef2ff;
+  border-radius: 6px;
+  display: flex; /* flex | inline-flex | block | grid | none */
+  align-items: center; /* flex-start | flex-end | center | baseline | stretch */
+  justify-content: center; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+}
+
+.placement-demo .box.big {
+  grid-column: 2 / span 2; /* start / span n | start / end */
+  grid-row: 1 / span 2; /* start / span n | start / end */
+  background: #dbeafe;
+}
+
+/* ==========================================================
+   FLEXBOX
+   ========================================================== */
+
+/* 1) Navbar */
+.flex-demo .navbar {
+  display: flex; /* flex | inline-flex | block | grid | none */
+  gap: 8px;
+  align-items: center; /* flex-start | flex-end | center | baseline | stretch */
+  padding: 8px;
+  background: #0f172a;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.flex-demo .navbar .brand {
+  font-weight: 700;
+  margin-right: auto;
+}
+
+.flex-demo .navbar .links {
+  display: flex; /* flex | inline-flex | block | grid | none */
+  gap: 8px;
+}
+
+/* 2) Centering */
+.center-demo .center-frame {
+  display: flex; /* flex | inline-flex | block | grid | none */
+  align-items: center; /* flex-start | flex-end | center | baseline | stretch */
+  justify-content: center; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+  height: 160px;
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* 3) Flex wrap cards */
+.wrap-demo .row {
+  display: flex; /* flex | inline-flex | block | grid | none */
+  flex-wrap: wrap; /* wrap | nowrap | wrap-reverse */
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.wrap-demo .card {
+  flex: 1 1 220px; /* flex-grow | flex-shrink | flex-basis */
+  min-width: 170px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* 4) Flex order */
+.order-demo .row {
+  display: flex; /* flex | inline-flex | block | grid | none */
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.order-demo .box {
+  padding: 10px;
+  border-radius: 6px;
+  background: #eefcf6;
+}
+
+.order-demo .box.first {
+  order: 3; /* 0 | 1 | 2 ... */
+}
+
+.order-demo .box.second {
+  order: 1; /* 0 | 1 | 2 ... */
+}
+
+.order-demo .box.third {
+  order: 2; /* 0 | 1 | 2 ... */
+}
+
+/* Utility text */
+.example-title {
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.example-sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Wrappers */
 .grid-demo-inner,
 .grid-areas-demo-inner,
 .auto-grid-demo-inner,
@@ -187,9 +318,9 @@ p.lead{margin:0;color:var(--muted)}
   overflow-wrap: break-word;
 }
 
-/* Responsivt: se till att grid-areas inte krossar små skärmar */
-@media (max-width:720px){
-  .grid-areas-demo .layout{
+/* Responsive fix */
+@media (max-width: 720px) {
+  .grid-areas-demo .layout {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
@@ -198,5 +329,8 @@ p.lead{margin:0;color:var(--muted)}
       "aside"
       "footer";
   }
-  .placement-demo .frame{grid-template-columns: repeat(2, 1fr)}
+
+  .placement-demo .frame {
+    grid-template-columns: repeat(2, 1fr); /* repeat(n, size) | auto-fit | auto-fill */
+  }
 }
