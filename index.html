@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CSS Grid & Flexbox — Pedagogiska exempel</title>
+  <!--
+    Denna HTML-fil länkar till en extern CSS-fil: styles.css
+    Spara båda filerna i samma mapp och öppna denna HTML i webbläsaren.
+  -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CSS Grid & Flexbox — pedagogiska exempel</h1>
+      <p class="lead">Kommentarer i koden förklarar vad som händer. Spara denna fil och öppna i webbläsaren för att leka med värden.</p>
+    </header>
+
+    <main class="examples-grid">
+
+      <!-- GRID: Enkel 3-kolumners grid -->
+      <section class="card grid-demo">
+        <h2 class="example-title">Grid: Enkel 3-kolumners layout</h2>
+        <p class="example-sub">Använd <code>grid-template-columns</code> för att skapa kolumner. <code>repeat(3, 1fr)</code> gör 3 lika stora kolumner.</p>
+        <div class="note">Ändra <code>grid-template-columns</code> till t.ex. <code>200px 1fr 100px</code> för fasta/flexibla kolumner.</div>
+        <div class="grid-demo-inner">
+          <div class="container">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID: Named areas -->
+      <section class="card grid-areas-demo">
+        <h2 class="example-title">Grid: Named template-areas</h2>
+        <p class="example-sub">Använd <code>grid-template-areas</code> för att ge semantiska namn åt områden i layouten.</p>
+        <div class="grid-areas-demo-inner">
+          <div class="layout">
+            <div class="header">Header</div>
+            <div class="sidebar">Sidebar</div>
+            <div class="main">Main content</div>
+            <div class="aside">Aside / Ads</div>
+            <div class="footer">Footer</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID: Auto-fit för kort -->
+      <section class="card auto-grid-demo">
+        <h2 class="example-title">Grid: responsive kort (auto-fit)</h2>
+        <p class="example-sub">Perfekt för bildgallerier eller kort-listor där antalet kolumner ska anpassa sig efter skärmbredd.</p>
+        <div class="auto-grid-demo-inner">
+          <div class="cards">
+            <div class="card-item">Kort 1</div>
+            <div class="card-item">Kort 2</div>
+            <div class="card-item">Kort 3</div>
+            <div class="card-item">Kort 4</div>
+            <div class="card-item">Kort 5</div>
+            <div class="card-item">Kort 6</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID: placement -->
+      <section class="card placement-demo">
+        <h2 class="example-title">Grid: placering över flera rader/kolumner</h2>
+        <p class="example-sub">Använd <code>grid-column</code> och <code>grid-row</code> för att lägga ett element över flera spalter eller rader.</p>
+        <div class="placement-demo-inner">
+          <div class="frame">
+            <div class="box">A</div>
+            <div class="box big">B (tar 2x2)</div>
+            <div class="box">C</div>
+            <div class="box">D</div>
+            <div class="box">E</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLEXBOX: navbar -->
+      <section class="card flex-demo">
+        <h2 class="example-title">Flexbox: enkel horisontell layout / navbar</h2>
+        <p class="example-sub">Flex används ofta för navbars, rader med knappar, mm. <code>margin-left: auto</code> eller <code>margin-right: auto</code> skapar utrymme mellan element.</p>
+        <div class="flex-demo-inner">
+          <div class="navbar">
+            <div class="brand">Logotyp</div>
+            <div class="links">
+              <div>Hem</div>
+              <div>Om</div>
+              <div>Kontakt</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLEXBOX: centrerings-tricket -->
+      <section class="card center-demo">
+        <h2 class="example-title">Flexbox: perfekt centrering</h2>
+        <p class="example-sub">Kombinera <code>align-items: center</code> och <code>justify-content: center</code> för perfekt vertikal + horisontell centrering.</p>
+        <div class="center-demo-inner">
+          <div class="center-frame">Centrerat innehåll</div>
+        </div>
+      </section>
+
+      <!-- FLEXBOX: wrap och grow -->
+      <section class="card wrap-demo">
+        <h2 class="example-title">Flexbox: flex-wrap + flex-basis (responsiva kort)</h2>
+        <p class="example-sub">Bra för rader med kort som ska brytas till nästa rad när utrymmet tar slut.</p>
+        <div class="wrap-demo-inner">
+          <div class="row">
+            <div class="card">Kort A</div>
+            <div class="card">Kort B</div>
+            <div class="card">Kort C</div>
+            <div class="card">Kort D</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLEXBOX: ordering -->
+      <section class="card order-demo">
+        <h2 class="example-title">Flexbox: ändra visuellt order utan att röra HTML</h2>
+        <p class="example-sub">Använd <code>order</code> för att ändra ordningen på element i layouten.</p>
+        <div class="order-demo-inner">
+          <div class="row">
+            <div class="box first">Visuellt sist</div>
+            <div class="box second">Visuellt först</div>
+            <div class="box third">Visuellt mitten</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

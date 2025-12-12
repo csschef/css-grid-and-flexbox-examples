@@ -1,0 +1,202 @@
+/* ==============================
+   STYLES FÖR: css-grid-flexbox-examples
+   Fil: styles.css
+   ============================== */
+:root{
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5a4;
+  --gap: 12px;
+  --max-width: 1100px;
+  --pad: 18px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#0f172a;
+  line-height:1.4;
+  display:flex;
+  justify-content:center;
+  padding:36px 16px;
+}
+.wrap{
+  width:100%;
+  max-width:var(--max-width);
+}
+header{margin-bottom:18px;}
+h1{font-size:22px;margin:0 0 6px}
+p.lead{margin:0;color:var(--muted)}
+
+.item,
+.box,
+.card-item,
+.card,
+.grid-demo,
+.flex-demo .navbar,
+.center-demo .center-frame,
+.wrap-demo .card,
+.order-demo .box,
+.placement-demo .frame,
+.header, .sidebar, .main, .aside, .footer{
+    border: 1px solid #000000;
+}
+
+/* Small card container used for each example */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 1px 0 rgba(10,10,10,0.04);
+  padding:var(--pad);
+  margin:14px 0;
+}
+
+.note{color:var(--muted);font-size:14px;margin:8px 0 12px}
+
+/* Utility: grid of examples in page */
+.examples-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:16px;
+  align-items:start;
+}
+
+/* ======================================================================
+   SECTION: CSS GRID — flera pedagogiska exempel
+   ====================================================================== */
+/* 1) Enkel grid (rader/kolumner) */
+.grid-demo{background:linear-gradient(180deg,#fff,#fbfeff);padding:12px;border-radius:8px}
+.grid-demo .container{
+  display:grid; /* Slår på grid */
+  grid-template-columns: repeat(3, 1fr); /* 3 lika breda kolumner */
+  gap: var(--gap); /* rad- och kolumn-gap */
+  margin-top:10px;
+}
+.grid-demo .item{
+  background:#eef6f5;
+  padding:12px;border-radius:8px;text-align:center;font-weight:600
+}
+
+/* 2) Named grid-areas — bra för layout där du vill placera sektioner semantiskt */
+.grid-areas-demo .layout{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr; /* vänster, center, höger */
+  grid-template-rows: auto 1fr auto; /* header, content, footer */
+  grid-template-areas:
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
+  gap:12px;
+  margin-top:10px;
+}
+.grid-areas-demo .header{grid-area:header;background:#fffbe6;padding:12px;border-radius:6px}
+.grid-areas-demo .sidebar{grid-area:sidebar;background:#eef2ff;padding:12px;border-radius:6px}
+.grid-areas-demo .main{grid-area:main;background:#fef2f2;padding:12px;border-radius:6px}
+.grid-areas-demo .aside{grid-area:aside;background:#e7f9ff;padding:12px;border-radius:6px}
+.grid-areas-demo .footer{grid-area:footer;background:#f3f4f6;padding:12px;border-radius:6px}
+
+/* 3) Auto-fill / Auto-fit — responsiv grid för kort/kort-listor */
+.auto-grid-demo .cards{
+  display:grid;
+  /* auto-fit försöker fylla raden med så många 200px-springs som får plats
+     minmax(180px, 1fr) betyder: varje kolumn är minst 180px, max tar resterande utrymme */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:12px;
+  margin-top:10px;
+}
+.auto-grid-demo .card-item{padding:12px;border-radius:8px;background:#fff;text-align:left}
+
+/* 4) Grid alignment och placering av enskilda element */
+.placement-demo .frame{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows:80px;
+  gap:8px;
+  margin-top:10px;
+  background:#ffffff;
+  padding:12px;border-radius:8px
+}
+.placement-demo .box{background:#eef2ff;border-radius:6px;display:flex;align-items:center;justify-content:center}
+/* placera ett element över flera kolumner/ rader */
+.placement-demo .box.big{grid-column:2 / span 2; grid-row:1 / span 2; background:#dbeafe}
+
+
+/* ======================================================================
+   SECTION: FLEXBOX — flera pedagogiska exempel
+   ====================================================================== */
+/* 1) Enkel horisontell layout (t.ex. navbar) */
+.flex-demo .navbar{
+  display:flex; /* slår på flex */
+  gap:8px;
+  align-items:center; /* vertikal inriktning */
+  padding:8px; background:#0f172a;color:#fff;border-radius:8px
+}
+.flex-demo .navbar .brand{font-weight:700;margin-right:auto}
+.flex-demo .navbar .links{display:flex;gap:8px}
+
+/* 2) Centrerings-tricket: flexbox för perfekt centering */
+.center-demo .center-frame{display:flex;align-items:center;justify-content:center;height:160px;background:#fff;border-radius:8px;margin-top:10px}
+
+/* 3) Flex wrap + grow — responsiva kort i rad
+   flex-wrap låter innehåll brytas till nästa rad; flex: 1 1 220px betyder grow, shrink, basis */
+.wrap-demo .row{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:10px
+}
+.wrap-demo .card{
+  flex:1 1 220px; /* växer för att fylla utrymme, krymper, utgångsbredd 220px */
+  min-width:170px;
+  background:#fff;padding:12px;border-radius:8px
+}
+
+/* 4) Ordering & alignment (ändra ordning utan att ändra HTML) */
+.order-demo .row{display:flex;gap:8px;margin-top:10px}
+.order-demo .box{padding:10px;border-radius:6px;background:#eefcf6}
+.order-demo .box.first{order:3}
+.order-demo .box.second{order:1}
+.order-demo .box.third{order:2}
+
+/* Små stilar för elementtext */
+.example-title{font-weight:700;margin:0 0 6px}
+.example-sub{color:var(--muted);font-size:13px;margin:0}
+
+/* Wrappers för demo-sektionerna — hjälper dem hålla sig inom kortets yta */
+.grid-demo-inner,
+.grid-areas-demo-inner,
+.auto-grid-demo-inner,
+.placement-demo-inner,
+.flex-demo-inner,
+.center-demo-inner,
+.wrap-demo-inner,
+.order-demo-inner {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+}
+
+.container,
+.layout,
+.cards,
+.frame,
+.navbar,
+.center-frame,
+.row {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+/* Responsivt: se till att grid-areas inte krossar små skärmar */
+@media (max-width:720px){
+  .grid-areas-demo .layout{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "aside"
+      "footer";
+  }
+  .placement-demo .frame{grid-template-columns: repeat(2, 1fr)}
+}
